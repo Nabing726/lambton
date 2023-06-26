@@ -34,28 +34,117 @@
 
 <body>
     <div class="container">
-      <div class="cart">
         <div class="box_main">
+      <div class="cart">
         <h3>Cart</h3>
         <div class="cart-item">
           <div class="row">
-            <div class="col-md-8">
-              <div class="title">Table</div>
+            <div class="col-md-4">
+              <div class="title">Chair 02</div>
             </div>
-            <div class="col-md-2">
-                <div class="Quantity">1</div>
+            <div class="col-md-3">
+              <input type="number" class="form-control quantity" value="1">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="price">$100</div>
+            </div>
+            <div class="col-md-2">
+              <div class="subtotal">$100</div>
+            </div>
+            <div class="col-md-12">
+              <button class="btn btn-sm btn-link remove-item-btn">Remove</button>
             </div>
           </div>
         </div>
-       <button class="btn btn-primary">Checkout</button>
+        <div class="cart-item">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="title">Table</div>
+            </div>
+            <div class="col-md-3">
+              <input type="number" class="form-control quantity" value="2">
+            </div>
+            <div class="col-md-3">
+              <div class="price">$100</div>
+            </div>
+            <div class="col-md-2">
+              <div class="subtotal">$200</div>
+            </div>
+            <div class="col-md-12">
+              <button class="btn btn-sm btn-link remove-item-btn">Remove</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cart-subtotal">
+          Subtotal: $300
+        </div>
+        
+        <div class="total-cost">
+          Estimated Total Cost (including taxes and shipping): $310
+        </div>
+        
+        <button class="btn btn-primary">Checkout</button>
       </div>
     </div>
     </div>
   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      // Script for quantity updates and item removal
+      document.addEventListener('DOMContentLoaded', function() {
+        const quantities = document.querySelectorAll('.quantity');
+        const removeBtns = document.querySelectorAll('.remove-item-btn');
+        
+        quantities.forEach(function(quantity) {
+          quantity.addEventListener('change', function() {
+            updateSubtotal(this);
+            updateTotalCost();
+          });
+        });
+        
+        removeBtns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            removeItem(this);
+            updateTotalCost();
+          });
+        });
+        
+        function updateSubtotal(input) {
+          const row = input.parentNode.parentNode.parentNode;
+          const price = row.querySelector('.price').textContent.slice(1);
+          const subtotal = row.querySelector('.subtotal');
+          
+          subtotal.textContent = '$' + (parseFloat(price) * input.value).toFixed(2);
+        }
+        
+        function removeItem(btn) {
+          const row = btn.parentNode.parentNode.parentNode;
+          row.parentNode.removeChild(row);
+        }
+        
+        function updateTotalCost() {
+          const subtotals = document.querySelectorAll('.subtotal');
+          const subtotalValues = Array.from(subtotals).map(function(subtotal) {
+            return parseFloat(subtotal.textContent.slice(1));
+          });
+          
+          const subtotal = subtotalValues.reduce(function(acc, val) {
+            return acc + val;
+          }, 0);
+          
+          const totalCost = document.querySelector('.total-cost');
+          totalCost.textContent = 'Estimated Total Cost (including taxes and shipping): $' + subtotal.toFixed(2);
+        }
+      });
+    </script>
   </body>
   
   </html>
+  
+  
+  
+  
+  
+  
+  

@@ -1008,6 +1008,33 @@ a.facebookBtn.smGlobalBtn.active {
   .cart-item .price {
     color: #888;
   }
+  
+  .cart-subtotal {
+    margin-top: 20px;
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .promotion {
+    margin-top: 20px;
+  }
+  
+  .total-cost {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .update-quantity-btn {
+    padding: 0 5px;
+    margin-left: 5px;
+  }
+  
+  .remove-item-btn {
+    color: red;
+    cursor: pointer;
+  }
 
 
 /* copyright section end */
