@@ -997,6 +997,18 @@ a.facebookBtn.smGlobalBtn.active {
     color: #7c2c0c;
 }
 
+.cart-item {
+    margin-bottom: 10px;
+  }
+  
+  .cart-item .title {
+    font-weight: bold;
+  }
+  
+  .cart-item .price {
+    color: #888;
+  }
+
 
 /* copyright section end */
 
